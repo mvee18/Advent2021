@@ -23,10 +23,22 @@ function createArray()
 end
 
 function triple(n)
-    println(n)
-    #    for x in eachindex(n)
-#        println(x)
-#    end
-end 
+	prev = 0
+	count = 0
+        for x in eachindex(n)
+        	if (x >= 3)
+			val = n[x] + n[x-1] + n[x-2]
+			if prev < val
+				println(prev, " ", val)
+				count += 1
+				prev = val
+			else
+				prev = val
+			end
+		end
+	end
+
+	println("The count of 3 sums that increased is: ", count-1)
+end
 
 triple(createArray())
