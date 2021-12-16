@@ -45,9 +45,7 @@ function getCols(m)
 	epsilon = ""
 
 	rev = reverse(tot[1])
-	println(rev, size(m, 1))
 	for i in rev
-		println(i, " ", size(m, 1)-i)
 		if (i > size(m, 1)-i)
 			gamma = string(gamma, "1")
 			epsilon = string(epsilon, "0")
@@ -63,23 +61,42 @@ end
 g, e = getCols(generateArrayFromText("test.txt"))
 
 
-# println(g, " ", e)
+println(g, " ", e)
+println(typeof(g))
 # println((parse(Int64, g, base=2) * parse(Int64, e, base=2)))
 
 test = generateArrayFromText("test.txt")
 
-function filterArrayOxygen(m)
-	tot = sum(m, dims = 1)
-	rev = reverse(tot[1])
-	for i in rev
-		# If one is the prevalent value...
-		if (i > size(m, 1)-i)
-		else
+function filterArrayOxygen(g, m)
+	for row in m
+		row = reverse!(row)
+	end
 
+	new_array = []
+	println(m)
+	for (index, value) in enumerate(g)
+		println(index, " ", value)
+		for (ri, rows) in enumerate(m)
+			if m[ri][index] == parse(Int64, value)
+				println("Comparison: ", m[ri], " ", value)
+				push!(new_array, m[ri])
+			end
 		end
 	end
+
+	println(new_array)
 end
 
-function filterArray(m, index, val)
+function filterO2() 
+			for (ri, rows) in enumerate(m)
+			if m[ri][index] == parse(Int64, value)
+				println("Comparison: ", m[ri], " ", value)
+				push!(new_array, m[ri])
+			end
+		end
+
 end
+
+
+filterArrayOxygen(g, test)
 
